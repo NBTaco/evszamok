@@ -29,9 +29,9 @@ const tomb = [
         evszam: "1812",
         esemeny: "Napóleon oroszországi hadjárata",
         tananyag: "egyetemes",
-        evszam: "1809",
-        esemeny: "győri csata",
-        tananyag: "magyar"
+        evszam2: "1809",
+        esemeny2: "győri csata",
+        tananyag2: "magyar"
     },
 ]
 
@@ -133,3 +133,5 @@ function fejlecGeneralas(){
         tr.appendChild(th)
     }
 }
+
+const form = document.getElementById('form')
