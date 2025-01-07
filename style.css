@@ -11,17 +11,14 @@ table{
 }
 
 thead {
-    background-color: #b0b0b0; /* Világos szürke */
+    background-color: #b0b0b0;
 }
 
-/* Első oszlop háttérszíne (figyelembe véve a rowspan-t is) */
-td:nth-child(1):not([rowspan]) {
-    background-color: #ffffff; /* Világos szürke */
+td:nth-last-of-type(4){
+    background-color: beige;
 }
 
-/* Harmadik oszlop színezése, figyelembe véve a rowspant is */
-td:nth-child(1) {
-    background-color: #585858; /* Világos szürke */
+td:nth-last-of-type(2){
+    background-color: beige;
 }
-
 
