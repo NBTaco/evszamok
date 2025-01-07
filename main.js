@@ -35,6 +35,8 @@ const tomb = [
     },
 ]
 
+generateForm()
+
 //table
 const table = document.createElement('table')
 document.body.appendChild(table)
@@ -164,29 +166,32 @@ form.addEventListener('submit', function(e){
         i.innerHTML = "" 
     
 
-    if(!validate(idoHTM, errorszoveg))
+    if(!validate(idoHTM, errorszoveg)){
         valid = false 
+    }
     
 
-    if(!validate(evszamHTM, errorszoveg)) 
+    if(!validate(evszamHTM, errorszoveg)) {
         valid = false 
-    
+    }
 
-    if(!validate(esemenyHTM, errorszoveg))
+    if(!validate(esemenyHTM, errorszoveg)){
         valid = false 
-    
+    }
 
-    if(!validate(tananyagV, errorszoveg)) 
+    if(!validate(tananyagV, errorszoveg)) {
         valid = false 
+    }
     
-    
-    if(!validateinput(tananyagHTM, errorszoveg))
+    if(!validateinput(tananyagHTM, errorszoveg)){
         valid = false
-    
-    if(!validate3(evszam2HTM,esemeny2HTM,tananyag2HTM,errorszoveg2))
-        valid = false
+    }
 
-    if(valid = true){
+    if(!validate3(evszam2HTM,esemeny2HTM,tananyag2HTM,errorszoveg2)){
+        valid = false
+    }
+
+    if(valid){
         if(evszam2V != "" &&  esemeny2V != "" && tananyag2HTM != ""){
             const ujob = { 
                 ido: idoV,
@@ -214,7 +219,7 @@ form.addEventListener('submit', function(e){
 })
 
 function validate3(validelem1,validelem2,validelem3,errorszoveg){
-    let valid = false
+    let valid = true
     const parent1 = validelem1.parentElement
     const parent2 = validelem2.parentElement
     const parent3 = validelem3.parentElement
@@ -271,4 +276,109 @@ function validateinput(inputelem, errorszoveg){
     else 
         errorhely.innerHTML = "";
     return valid
+}
+
+
+function generateForm(){
+    const formtomb = [
+        {
+            label: "Korszak megnevezése: ",
+            id: "korszak",
+        },
+        {
+            label: "1. esemény évszám:",
+            id: "evszam1",
+        },
+        {
+            label: "1. esemény megnevezés:",
+            id: "megnev1",
+        },
+        {
+            label: "1. esemény tananyag:",
+            id: "tan1",
+        },
+        {
+            label: "2. esemény évszám:",
+            id: "evszam2",
+        },
+        {
+            label: "2. esemény megnevezés:",
+            id: "megnev2",
+        },
+
+        {
+            label: "2. esemény tananyag:",
+            id: "tan2",
+        },
+        
+    ]
+
+    const form = document.createElement('form')
+    form.id = "form"
+    form.action = "#"
+    document.body.appendChild(form)
+
+   
+
+    for(let i = 0; i < formtomb.length; i++){
+
+        const aktualis = formtomb[i]
+
+        if(aktualis.id == 'tan1' || aktualis.id == 'tan2'){
+            const div = document.createElement('div')
+            form.appendChild(div)
+            const label = document.createElement('label')
+            label.innerHTML = aktualis.label
+            div.appendChild(label)
+            const br1 = document.createElement('br')
+            div.appendChild(br1)
+            const select = document.createElement('select')
+            select.id = aktualis.id
+            select.name = aktualis.id
+            const option1 = document.createElement('option')
+            option1.value = ''
+            option1.innerHTML = ''
+            select.appendChild(option1)
+            const option2 = document.createElement('option')
+            option2.value = 'magyar'
+            option2.innerHTML = 'Magyar történelem'
+            select.appendChild(option2)
+            const option3 = document.createElement('option')
+            option3.value = 'egyetemes'
+            option3.innerHTML = 'Egyetemes történelem'
+            select.appendChild(option3)
+            div.appendChild(select)
+            const br2 = document.createElement('br')
+            div.appendChild(br2)
+            const span = document.createElement('span')
+            span.classList = "error"
+            div.appendChild(span)
+            const br3 = document.createElement('br')
+            div.appendChild(br3)
+        }
+        else{
+            const div = document.createElement('div')
+            form.appendChild(div)
+            const label = document.createElement('label')
+            label.innerHTML = aktualis.label
+            div.appendChild(label)
+            const br1 = document.createElement('br')
+            div.appendChild(br1)
+            const input = document.createElement('input')
+            input.type = "text"
+            input.id = aktualis.id
+            input.name = aktualis.id
+            div.appendChild(input)
+            const br2 = document.createElement('br')
+            div.appendChild(br2)
+            const span = document.createElement('span')
+            span.classList = "error"
+            div.appendChild(span)
+            const br3 = document.createElement('br')
+            div.appendChild(br3)
+        }
+    }
+    const button = document.createElement('button')
+    button.innerHTML = "Hozzáadás"
+    form.appendChild(button)
 }
