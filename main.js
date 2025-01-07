@@ -89,7 +89,7 @@ form.addEventListener('submit', function(e){
         valid = false 
     }
     
-    if(!validateinput(tananyagHTM, errorszoveg)){
+    if(!validate(tananyagHTM, errorszoveg)){
         valid = false
     }
 

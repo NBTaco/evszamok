@@ -1,3 +1,10 @@
+
+/**
+ * A függvény végigmegy egy tömbön, ami az array paraméterben adunk meg, és annak objektumai alapján létrehoz egy táblázatot a HTML-en
+ * 
+ * 
+ * @param {Array} array a tömb ami alapján generálunk
+ */
 function RenderTable(array){
     fejlecGeneralas()
 
@@ -68,7 +75,9 @@ function RenderTable(array){
     }
 }
 
-//fejlec generalas
+/**
+ * A függvény egy a függvényen belüli objektum alaopján létrehozza a táblázat fejlécét, a függvényt a RenderTable()-ben használjuk
+ */
 function fejlecGeneralas(){
     const fejlec = {
         ido: "Időszak",
@@ -89,6 +98,20 @@ function fejlecGeneralas(){
     }
 }
 
+/**
+ * A függvény 3 elemet mér össze (validelem1,validelem2,validelem3 paraméterek) ha mindegyik üres akkor mindegyiknek 
+ * a hozzá tartozó error class-os spanjét üressre állítja, de ha bármelyikbe írva van valami, akkor azokba 
+ * amelyekbe nincs semmi kiírja az errorukhoz az errorszoveg paraméternek megadott szöveget
+ * 
+ * a függvény használja a validate() függvényt
+ * 
+ * @param {HTMLElement} validelem1 Első HTML elem
+ * @param {HTMLElement} validelem2 Második HTML elem
+ * @param {HTMLElement} validelem3 Harmadik HTML elem
+ * @param {string} errorszoveg Az error szövege
+ * 
+ * @returns True, ha átmegy, False ha nem
+ */
 function validate3(validelem1,validelem2,validelem3,errorszoveg){
     let valid = true
     const parent1 = validelem1.parentElement
@@ -99,7 +122,7 @@ function validate3(validelem1,validelem2,validelem3,errorszoveg){
     const error2 = parent2.querySelector('.error')
     const error3 = parent3.querySelector('.error')
 
-    if(!validate(validelem1, errorszoveg) && !validate(validelem2, errorszoveg)  && !validateinput(validelem3, errorszoveg)){
+    if(!validate(validelem1, errorszoveg) && !validate(validelem2, errorszoveg)  && !validate(validelem3, errorszoveg)){
         error1.innerHTML = ""
         error2.innerHTML = ""
         error3.innerHTML = ""
@@ -120,6 +143,19 @@ function validate3(validelem1,validelem2,validelem3,errorszoveg){
     }
     return valid
 }
+
+/**
+ * A függvény megnézi, hogy az elem- paraméternek megadott HTML elemnek van e szövege, 
+ * ha van akkor nem lesz error szöveg, ha nincs akkor az errorszoveg- paraméternek megadott szöveget irja ki errornak
+ * 
+ * 
+ * @param {HTMLElement} elem A validálni kívánt HTML elem
+ * @param {string} errorszoveg Az error szövege
+ * 
+ * 
+ * @returns True, ha átmegy, False ha nem
+
+ */
 function validate(elem, errorszoveg){ 
     let valid = true 
     if(elem.value === ""){
@@ -133,23 +169,9 @@ function validate(elem, errorszoveg){
     return valid 
 }
 
-function validateinput(inputelem, errorszoveg){
-    let valid = true;
-    const parent = inputelem.parentElement;
-    const errorhely = parent.querySelector(".error");
-
-    if (inputelem.value === "") {
-        if (errorhely) {
-            errorhely.innerHTML = errorszoveg;
-        }
-        valid = false;
-    } 
-    else 
-        errorhely.innerHTML = "";
-    return valid
-}
-
-
+/**
+ * A függvény egy a függvényen belüli tomb alapján generál egy Form-ot a HTML-en
+ */
 function generateForm(){
     const formtomb = [
         {
