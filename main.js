@@ -135,3 +135,140 @@ function fejlecGeneralas(){
 }
 
 const form = document.getElementById('form')
+
+form.addEventListener('submit', function(e){ 
+    e.preventDefault() 
+    const idoHTM = document.getElementById('korszak') 
+    const evszamHTM = document.getElementById('evszam1') 
+    const esemenyHTM = document.getElementById('megnev1') 
+    const tananyagHTM = document.getElementById('tan1') 
+    const evszam2HTM = document.getElementById('evszam2') 
+    const esemeny2HTM = document.getElementById('megnev2') 
+    const tananyag2HTM = document.getElementById('tan2') 
+
+    const idoV = idoHTM.value 
+    const evszamV = evszamHTM.value 
+    const esemenyV = esemenyHTM.value
+    const tananyagV = tananyagHTM.value 
+    const evszam2V = evszam2HTM.value 
+    const esemeny2V = esemeny2HTM.value 
+    const tananyag2V = tananyag2HTM.value 
+
+    const aktualis = e.currentTarget
+    const errorok = aktualis.querySelectorAll('.error')
+    let errorszoveg = "A mező kitöltés kötelező!"  
+    let errorszoveg2 = "Mind a 3 kötelező!"  
+    let valid = true
+
+    for(const i of errorok)
+        i.innerHTML = "" 
+    
+
+    if(!validate(idoHTM, errorszoveg))
+        valid = false 
+    
+
+    if(!validate(evszamHTM, errorszoveg)) 
+        valid = false 
+    
+
+    if(!validate(esemenyHTM, errorszoveg))
+        valid = false 
+    
+
+    if(!validate(tananyagV, errorszoveg)) 
+        valid = false 
+    
+    
+    if(!validateinput(tananyagHTM, errorszoveg))
+        valid = false
+    
+    if(!validate3(evszam2HTM,esemeny2HTM,tananyag2HTM,errorszoveg2))
+        valid = false
+
+    if(valid = true){
+        if(evszam2V != "" &&  esemeny2V != "" && tananyag2HTM != ""){
+            const ujob = { 
+                ido: idoV,
+                evszam: evszamV,
+                esemeny: esemenyV,
+                tananyag: tananyagV,
+                evszam2: evszam2V,
+                esemeny2: esemeny2V,
+                tananyag2: tananyag2V
+            }
+            tomb.push(ujob)
+        } 
+        else { 
+            const ujob = { 
+                ido: idoV,
+                evszam: evszamV,
+                esemeny: esemenyV,
+                tananyag: tananyagV,
+            }
+            tomb.push(ujob)
+        }
+    }
+    table.innerHTML = ""
+    RenderTable(tomb) 
+})
+
+function validate3(validelem1,validelem2,validelem3,errorszoveg){
+    let valid = false
+    const parent1 = validelem1.parentElement
+    const parent2 = validelem2.parentElement
+    const parent3 = validelem3.parentElement
+
+    const error1 = parent1.querySelector('.error')
+    const error2 = parent2.querySelector('.error')
+    const error3 = parent3.querySelector('.error')
+
+    if(!validate(validelem1, errorszoveg) && !validate(validelem2, errorszoveg)  && !validateinput(validelem3, errorszoveg)){
+        error1.innerHTML = ""
+        error2.innerHTML = ""
+        error3.innerHTML = ""
+    }
+    else{
+        if(!validate(validelem1, errorszoveg)){
+            error1.innerHTML = errorszoveg
+            valid = false
+        }
+        if(!validate(validelem2, errorszoveg)){
+            error2.innerHTML = errorszoveg
+            valid = false
+        }
+        if(!validate(validelem3, errorszoveg)){
+            error3.innerHTML = errorszoveg
+            valid = false
+        }
+    }
+    return valid
+}
+function validate(elem, errorszoveg){ 
+    let valid = true 
+    if(elem.value === ""){
+        const parent = elem.parentElement
+        const errorhelye = parent.querySelector(".error") 
+        if(errorhelye != ""){
+            errorhelye.innerHTML = errorszoveg
+        }
+        valid = false
+    }
+    return valid 
+}
+
+function validateinput(inputelem, errorszoveg){
+    let valid = true;
+    const parent = inputelem.parentElement;
+    const errorhely = parent.querySelector(".error");
+
+    if (inputelem.value === "") {
+        if (errorhely) {
+            errorhely.innerHTML = errorszoveg;
+        }
+        valid = false;
+    } 
+    else 
+        errorhely.innerHTML = "";
+    return valid
+}

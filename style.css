@@ -1,0 +1,27 @@
+table td,th {
+    border: 1px solid black;
+}
+
+table{
+    border-collapse: collapse;
+}
+
+.error{
+    color: #ff0000;
+}
+
+thead {
+    background-color: #b0b0b0; /* Világos szürke */
+}
+
+/* Első oszlop háttérszíne (figyelembe véve a rowspan-t is) */
+td:nth-child(1):not([rowspan]) {
+    background-color: #ffffff; /* Világos szürke */
+}
+
+/* Harmadik oszlop színezése, figyelembe véve a rowspant is */
+td:nth-child(1) {
+    background-color: #585858; /* Világos szürke */
+}
+
+
