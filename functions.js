@@ -15,18 +15,11 @@ function RenderTable(array){
 
         const aktualis = array[i]
         let index = 0
-        let tulajdszam = 0
-
-        for(const j in aktualis){
-            tulajdszam++
-        }
 
         const tbodyr1 = document.createElement('tr')
-        tbodyr1.classList = 'a'
         tbody.appendChild(tbodyr1)
         
         const tbodyr2 = document.createElement('tr')
-        tbodyr2.classList = 'b'
         tbody.appendChild(tbodyr2)
 
         for (const j in aktualis) {
@@ -38,11 +31,11 @@ function RenderTable(array){
                 tbodyr1.appendChild(td)
             } 
             
-            else if (3 >= index >= 1){
+            else if (index >= 1 && index <= 3){
                 tbodyr1.appendChild(td)
             } 
             
-            else if (4 <= index <= 6 ){
+            else if (index >= 4 && index <= 6){
                 tbodyr2.appendChild(td)
             }
         
@@ -186,8 +179,6 @@ function generateForm(){
     form.id = "form"
     form.action = "#"
     document.body.appendChild(form)
-
-   
 
     for(let i = 0; i < formtomb.length; i++){
         const aktualis = formtomb[i]
