@@ -29,48 +29,24 @@ function RenderTable(array){
         tbodyr2.classList = 'b'
         tbody.appendChild(tbodyr2)
 
-        for(const j in aktualis){
-            if(index === 0){
-                const td = document.createElement('td')
-                td.innerHTML = aktualis[j] 
-                td.rowSpan = 2 
+        for (const j in aktualis) {
+            const td = document.createElement('td')
+            td.innerHTML = aktualis[j]
+        
+            if (index === 0){
+                td.rowSpan = 2;
                 tbodyr1.appendChild(td)
-            }
-
-            if(index === 1){
-                const td = document.createElement('td')
-                td.innerHTML = aktualis[j]
+            } 
+            
+            else if (3 >= index >= 1){
                 tbodyr1.appendChild(td)
+            } 
+            
+            else if (4 <= index <= 6 ){
+                tbodyr2.appendChild(td)
             }
-
-            if(index === 2){
-                const td = document.createElement('td') 
-                td.innerHTML = aktualis[j]
-                tbodyr1.appendChild(td)
-            }
-
-            if(index === 3){
-                const td = document.createElement('td')
-                td.innerHTML = aktualis[j]
-                tbodyr1.appendChild(td)
-            }
-
-            if(index === 4){ 
-                const td5 = document.createElement('td')
-                td5.innerHTML = aktualis[j] 
-                tbodyr2.appendChild(td5) 
-            }
-            if(index === 5){ 
-                const td = document.createElement('td')
-                td.innerHTML = aktualis[j] 
-                tbodyr2.appendChild(td) 
-            }
-            if(index === 6){ 
-                const td = document.createElement('td')
-                td.innerHTML = aktualis[j] 
-                tbodyr2.appendChild(td) 
-            }
-            index++ 
+        
+            index++
         }
     }
 }
@@ -214,17 +190,15 @@ function generateForm(){
    
 
     for(let i = 0; i < formtomb.length; i++){
-
         const aktualis = formtomb[i]
-
+        const div = document.createElement('div')
+        form.appendChild(div)
+        const label = document.createElement('label')
+        label.innerHTML = aktualis.label
+        div.appendChild(label)
+        const br1 = document.createElement('br')
+        div.appendChild(br1)
         if(aktualis.id == 'tan1' || aktualis.id == 'tan2'){
-            const div = document.createElement('div')
-            form.appendChild(div)
-            const label = document.createElement('label')
-            label.innerHTML = aktualis.label
-            div.appendChild(label)
-            const br1 = document.createElement('br')
-            div.appendChild(br1)
             const select = document.createElement('select')
             select.id = aktualis.id
             select.name = aktualis.id
@@ -241,35 +215,22 @@ function generateForm(){
             option3.innerHTML = 'Egyetemes történelem'
             select.appendChild(option3)
             div.appendChild(select)
-            const br2 = document.createElement('br')
-            div.appendChild(br2)
-            const span = document.createElement('span')
-            span.classList = "error"
-            div.appendChild(span)
-            const br3 = document.createElement('br')
-            div.appendChild(br3)
         }
         else{
-            const div = document.createElement('div')
-            form.appendChild(div)
-            const label = document.createElement('label')
-            label.innerHTML = aktualis.label
-            div.appendChild(label)
-            const br1 = document.createElement('br')
-            div.appendChild(br1)
-            const input = document.createElement('input')
-            input.type = "text"
-            input.id = aktualis.id
-            input.name = aktualis.id
-            div.appendChild(input)
-            const br2 = document.createElement('br')
-            div.appendChild(br2)
-            const span = document.createElement('span')
-            span.classList = "error"
-            div.appendChild(span)
-            const br3 = document.createElement('br')
-            div.appendChild(br3)
+        const input = document.createElement('input')
+        input.type = "text"
+        input.id = aktualis.id
+        input.name = aktualis.id
+        div.appendChild(input)
         }
+        const br2 = document.createElement('br')
+        div.appendChild(br2)
+        const span = document.createElement('span')
+        span.classList = "error"
+        div.appendChild(span)
+        const br3 = document.createElement('br')
+        div.appendChild(br3)
+        
     }
     const button = document.createElement('button')
     button.innerHTML = "Hozzáadás"
